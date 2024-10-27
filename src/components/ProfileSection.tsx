@@ -34,8 +34,8 @@ const ProfileSection = () => {
     }
 
     return (
-        <div className="border p-4 rounded-md shadow-md">
-            <h2 className="text-xl font-bold">Profile Information</h2>
+        <div className="border p-4 rounded-md shadow-md bg-gray-100 text-gray-600">
+            <h2 className="text-xl font-bold mb-4">Profile Information</h2>
             <p>
                 <strong>User ID:</strong> {userId}
             </p>

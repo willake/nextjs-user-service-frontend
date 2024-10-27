@@ -21,7 +21,7 @@ const SetPasswordSection = () => {
     }
 
     return (
-        <div className="border p-4 rounded-md shadow-md mt-4">
+        <div className="border p-4 rounded-md shadow-md mt-4 text-gray-600">
             <h2 className="text-xl font-bold">Change Password</h2>
             <div className="mt-4">
                 <label className="block mb-1">Old Password:</label>
