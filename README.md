@@ -2,6 +2,8 @@
 
 This is a Next.js project for testing my [ktor user service](https://github.com/willake/ktor-user-service)
 
+![Login page](./readme_assets/login.jpg)
+
 ## Features
 
 - Register account
