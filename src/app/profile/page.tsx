@@ -7,8 +7,9 @@ import SetPasswordSection from '@/components/SetPasswordSection'
 import DeleteAccountModal from '@/components/DeleteAccountModal'
 import { useRouter } from 'next/navigation'
 import useUserEndpoints from '@/hooks/useUserEndpoints'
+import { NextPage } from 'next'
 
-const ProfilePage = () => {
+const ProfilePage: NextPage = () => {
     const { userId, logout } = useAuth()
     const [isModalOpen, setIsModalOpen] = useState(false)
     const router = useRouter()

@@ -24,11 +24,12 @@ export default function useUserEndpoints() {
                 password: password,
             })
 
-            // Redirect to login after successful registration
-            router.push('/')
+            const data: User = response.data
+            return data
         } catch (err: unknown) {
             const error = err as AxiosError
             setError(error.message || 'Registration failed')
+            return null
         } finally {
             setLoading(false)
         }
