@@ -13,6 +13,7 @@ interface IAuthContext {
     setUserId: (userId: string | null) => void
     token: string | null
     setToken: (token: string | null) => void
+    logout: () => void
     isAuthenticated: boolean
 }
 
@@ -54,9 +55,21 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         }
     }, [userId, token])
 
+    const logout = () => {
+        localStorage.removeItem('auth-user')
+        localStorage.removeItem('jwt-token')
+    }
+
     return (
         <AuthContext.Provider
-            value={{ userId, setUserId, token, setToken, isAuthenticated }}
+            value={{
+                userId,
+                setUserId,
+                token,
+                setToken,
+                logout,
+                isAuthenticated,
+            }}
         >
             {children}
         </AuthContext.Provider>
