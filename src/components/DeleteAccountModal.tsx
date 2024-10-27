@@ -14,7 +14,7 @@ const DeleteAccountModal: React.FC<DeleteAccountModalProps> = ({
     if (!isOpen) return null
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 text-gray-600">
             <div className="bg-white p-6 rounded-md shadow-md">
                 <h2 className="text-lg font-bold mb-4">Confirm Deletion</h2>
                 <p>Are you sure you want to delete your account?</p>
