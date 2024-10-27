@@ -15,8 +15,8 @@ const SetPasswordSection = () => {
                 oldPassword,
                 newPassword
             )
-            if (result) alert('Set password successfully')
-            else alert('Set password failed')
+            if (result) alert('Update password successfully')
+            else alert('Update password failed')
         }
     }
 
