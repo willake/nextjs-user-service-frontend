@@ -1,4 +1,5 @@
 import { useAuth } from '@/context/AuthContext'
+import User from '@/models/User'
 import api from '@/services/api'
 import axios, { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
@@ -33,13 +34,14 @@ export default function useUserEndpoints() {
         }
     }
 
-    const getUser = async (userId: string) => {
+    const fetchUser = async (userId: string) => {
         setLoading(true)
         setError(null)
 
         try {
-            var response = api.get(`/api/v1/user/${userId}`)
-            return (await response).data
+            var response = await api.get(`/api/v1/user/${userId}`)
+            const data: User = response.data
+            return data
         } catch (err: unknown) {
             const error = err as AxiosError
             setError(error.message || 'Registration failed')
@@ -54,11 +56,12 @@ export default function useUserEndpoints() {
         setError(null)
 
         try {
-            var response = api.put(`/api/v1/user`, {
-                userId: userId,
+            var response = await api.put(`/api/v1/user`, {
+                id: userId,
                 email: email,
             })
-            return (await response).data
+            const data: User = response.data
+            return data
         } catch (err: unknown) {
             const error = err as AxiosError
             setError(error.message || 'Registration failed')
@@ -77,13 +80,15 @@ export default function useUserEndpoints() {
         setError(null)
 
         try {
-            api.put(`/api/v1/user/${userId}/password`, {
+            await api.put(`/api/v1/user/${userId}/password`, {
                 oldPassword: oldPassword,
                 newPassword: newPassword,
             })
+            return true
         } catch (err: unknown) {
             const error = err as AxiosError
             setError(error.message || 'Registration failed')
+            return false
         } finally {
             setLoading(false)
         }
@@ -94,11 +99,12 @@ export default function useUserEndpoints() {
         setError(null)
 
         try {
-            api.delete(`/api/v1/user/${userId}`)
-            router.push('/')
+            await api.delete(`/api/v1/user/${userId}`)
+            return true
         } catch (err: unknown) {
             const error = err as AxiosError
             setError(error.message || 'Registration failed')
+            return false
         } finally {
             setLoading(false)
         }
@@ -108,7 +114,7 @@ export default function useUserEndpoints() {
         loading,
         error,
         registerUser,
-        getUser,
+        fetchUser,
         updateUserInfo,
         setUserPassword,
         deleteUser,
