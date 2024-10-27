@@ -1,12 +1,11 @@
 import axios from 'axios'
-import { config } from 'process'
 
 const api = axios.create({
-    baseURL: 'localhost:8080'
+    baseURL: 'localhost:8080',
 })
 
 // add auth token if logged in
-api.interceptors.request.use(config => {
+api.interceptors.request.use((config) => {
     const token = localStorage.getItem('jwt-token')
     if (token) config.headers.Authorization = `Bearer ${token}`
     return config
