@@ -72,7 +72,7 @@ export default function useUserEndpoints() {
         }
     }
 
-    const setUserPassword = async (
+    const updateUserPassword = async (
         userId: string,
         oldPassword: string,
         newPassword: string
@@ -117,7 +117,7 @@ export default function useUserEndpoints() {
         registerUser,
         fetchUser,
         updateUserInfo,
-        setUserPassword,
+        updateUserPassword,
         deleteUser,
     }
 }
