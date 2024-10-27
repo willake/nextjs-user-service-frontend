@@ -7,7 +7,6 @@ import { useAuth } from '@/context/AuthContext'
 export default function useAuthEndpoints() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
-    const router = useRouter()
     const { setUserId, setToken } = useAuth()
 
     const login = async (username: string, password: string) => {
@@ -23,12 +22,20 @@ export default function useAuthEndpoints() {
             setUserId(userId)
             setToken(accessToken)
 
-            router.push('/profile')
+            return true
         } catch (err) {
             const error = err as AxiosError
             setError(error.message || 'Login failed')
+
+            return false
         } finally {
             setLoading(false)
         }
+    }
+
+    return {
+        loading,
+        error,
+        login,
     }
 }

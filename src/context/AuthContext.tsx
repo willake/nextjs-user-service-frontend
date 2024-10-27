@@ -42,7 +42,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     useEffect(() => {
         // Update localStorage whenever user or token changes
         if (userId) {
-            localStorage.setItem('auth-user', JSON.stringify(userId))
+            localStorage.setItem('auth-user', userId)
         } else {
             localStorage.removeItem('auth-user')
         }

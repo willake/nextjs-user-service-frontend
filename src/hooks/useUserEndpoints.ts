@@ -103,4 +103,14 @@ export default function useUserEndpoints() {
             setLoading(false)
         }
     }
+
+    return {
+        loading,
+        error,
+        registerUser,
+        getUser,
+        updateUserInfo,
+        setUserPassword,
+        deleteUser,
+    }
 }
