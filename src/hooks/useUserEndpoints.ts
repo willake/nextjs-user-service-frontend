@@ -24,11 +24,12 @@ export default function useUserEndpoints() {
                 password: password,
             })
 
-            // Redirect to login after successful registration
-            router.push('/')
+            const data: User = response.data
+            return data
         } catch (err: unknown) {
             const error = err as AxiosError
             setError(error.message || 'Registration failed')
+            return null
         } finally {
             setLoading(false)
         }
@@ -71,7 +72,7 @@ export default function useUserEndpoints() {
         }
     }
 
-    const setUserPassword = async (
+    const updateUserPassword = async (
         userId: string,
         oldPassword: string,
         newPassword: string
@@ -116,7 +117,7 @@ export default function useUserEndpoints() {
         registerUser,
         fetchUser,
         updateUserInfo,
-        setUserPassword,
+        updateUserPassword,
         deleteUser,
     }
 }

@@ -6,17 +6,17 @@ const SetPasswordSection = () => {
     const [oldPassword, setOldPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const { userId } = useAuth()
-    const { loading, error, setUserPassword } = useUserEndpoints()
+    const { loading, error, updateUserPassword } = useUserEndpoints()
 
     const handleSetUserPassword = async (e: React.FormEvent) => {
         if (userId) {
-            const result = await setUserPassword(
+            const result = await updateUserPassword(
                 userId,
                 oldPassword,
                 newPassword
             )
-            if (result) alert('Set password successfully')
-            else alert('Set password failed')
+            if (result) alert('Update password successfully')
+            else alert('Update password failed')
         }
     }
 
