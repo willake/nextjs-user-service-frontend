@@ -1,3 +1,4 @@
+import { useAuth } from '@/context/AuthContext'
 import api from '@/services/api'
 import axios, { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
@@ -38,9 +39,11 @@ export default function useUserEndpoints() {
 
         try {
             var response = api.get(`/api/v1/user/${userId}`)
+            return (await response).data
         } catch (err: unknown) {
             const error = err as AxiosError
             setError(error.message || 'Registration failed')
+            return null
         } finally {
             setLoading(false)
         }
@@ -55,9 +58,11 @@ export default function useUserEndpoints() {
                 userId: userId,
                 email: email,
             })
+            return (await response).data
         } catch (err: unknown) {
             const error = err as AxiosError
             setError(error.message || 'Registration failed')
+            return null
         } finally {
             setLoading(false)
         }
@@ -90,7 +95,6 @@ export default function useUserEndpoints() {
 
         try {
             api.delete(`/api/v1/user/${userId}`)
-
             router.push('/')
         } catch (err: unknown) {
             const error = err as AxiosError

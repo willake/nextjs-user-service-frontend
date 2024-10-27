@@ -1,3 +1,5 @@
+'use client'
+
 import {
     ReactNode,
     useContext,
@@ -6,15 +8,9 @@ import {
     useEffect,
 } from 'react'
 
-export interface User {
-    id: string
-    email: string
-    username: string
-}
-
 interface IAuthContext {
-    user: User | null
-    setUser: (user: User | null) => void
+    userId: string | null
+    setUserId: (userId: string | null) => void
     token: string | null
     setToken: (token: string | null) => void
     isAuthenticated: boolean
@@ -23,20 +19,30 @@ interface IAuthContext {
 const AuthContext = createContext<IAuthContext | undefined>(undefined)
 
 const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [user, setUser] = useState<User | null>(() => {
-        const savedUser = localStorage.getItem('auth-user')
-        return savedUser ? JSON.parse(savedUser) : null
-    })
-    const [token, setToken] = useState<string | null>(
-        localStorage.getItem('jwt-token')
-    )
+    const [userId, setUserId] = useState<string | null>(null)
+    const [token, setToken] = useState<string | null>(null)
 
     const isAuthenticated = Boolean(token)
 
     useEffect(() => {
+        // Load user and token from localStorage when the component mounts
+        // It is because initially it is server side
+        const savedUserId = localStorage.getItem('auth-user')
+        const savedToken = localStorage.getItem('jwt-token')
+
+        if (savedUserId) {
+            setUserId(savedUserId)
+        }
+
+        if (savedToken) {
+            setToken(savedToken)
+        }
+    }, [])
+
+    useEffect(() => {
         // Update localStorage whenever user or token changes
-        if (user) {
-            localStorage.setItem('auth-user', JSON.stringify(user))
+        if (userId) {
+            localStorage.setItem('auth-user', JSON.stringify(userId))
         } else {
             localStorage.removeItem('auth-user')
         }
@@ -46,11 +52,11 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         } else {
             localStorage.removeItem('jwt-token')
         }
-    }, [user, token])
+    }, [userId, token])
 
     return (
         <AuthContext.Provider
-            value={{ user, setUser, token, setToken, isAuthenticated }}
+            value={{ userId, setUserId, token, setToken, isAuthenticated }}
         >
             {children}
         </AuthContext.Provider>
