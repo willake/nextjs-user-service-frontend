@@ -2,7 +2,16 @@
 
 This is a Next.js project for testing my [ktor user service](https://github.com/willake/ktor-user-service)
 
+## Features
+
+- Register account
+- Login
+- Edit account info(email, password...etc)
+- Delete account
+
 ## Test
+
+Install `npm`, `yarn`, or `pnpm`
 
 To run the development server:
 
@@ -13,6 +22,8 @@ yarn dev
 # or
 pnpm dev
 ```
+
+By default, the dev server is run on `localhost:3000`
 
 ## Version Control
 
