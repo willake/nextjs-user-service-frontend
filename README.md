@@ -25,7 +25,9 @@ yarn dev
 pnpm dev
 ```
 
-By default, the dev server is run on `localhost:3000`
+By default, the dev server is run on `localhost:3000`.
+The backend host is defined in `.env` file as `NEXT_PUBLIC_BACKEND_HOST`.
+For production, you will require to create the `.env` file by yourself.
 
 ## Version Control
 
