@@ -4,14 +4,8 @@ This is a Next.js project for testing my [ktor user service](https://github.com/
 
 ![Login page](./readme_assets/login.jpg)
 
-## Features
 
-- Register account
-- Login
-- Edit account info(email, password...etc)
-- Delete account
-
-## Test
+## How to run
 
 Install `npm`, `yarn`, or `pnpm`
 
@@ -25,7 +19,16 @@ yarn dev
 pnpm dev
 ```
 
-By default, the dev server is run on `localhost:3000`
+By default, the dev server is run on `localhost:3000`.
+The backend host is defined in `.env` file as `NEXT_PUBLIC_BACKEND_HOST`.
+For production, you are required to create the `.env` file by yourself.
+
+## Features
+
+- Register account
+- Login
+- Edit account info(email, password...etc)
+- Delete account
 
 ## Version Control
 
