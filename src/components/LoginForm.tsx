@@ -27,7 +27,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error, loading }) => {
                 <input
                     type="text"
                     id="username"
-                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500"
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500 text-gray-800"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
@@ -43,7 +43,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error, loading }) => {
                 <input
                     type="password"
                     id="password"
-                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500"
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500 text-gray-800"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required

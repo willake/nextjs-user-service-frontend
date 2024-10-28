@@ -1,39 +1,46 @@
 'use client'
 
-import LoginForm from '@/components/LoginForm'
-import useAuthEndpoints from '@/hooks/useAuthEndpoints'
+import RegisterForm from '@/components/RegisterForm'
+import useUserEndpoints from '@/hooks/useUserEndpoints'
 import { NextPage } from 'next'
 import { useRouter } from 'next/navigation'
 
-const Home: NextPage = () => {
+const RegisterPage: NextPage = () => {
     const router = useRouter()
-    const { loading, error, login } = useAuthEndpoints()
+    const { loading, error, registerUser } = useUserEndpoints()
 
-    const handleLogin = async (username: string, password: string) => {
-        var success = await login(username, password)
-        if (success) router.push('/profile')
+    const handleRegister = async (
+        username: string,
+        email: string,
+        password: string
+    ) => {
+        const user = await registerUser(email, username, password)
+        if (user) {
+            alert('Create account successfully')
+            router.push('/')
+        }
     }
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="bg-white p-8 rounded-lg shadow-md w-96 border border-gray-300">
+            <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md border border-gray-300">
                 <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-                    Login
+                    Register
                 </h2>
-                <LoginForm
-                    onSubmit={handleLogin}
+                <RegisterForm
+                    onSubmit={handleRegister}
                     loading={loading}
                     error={error}
                 />
                 <div className="mt-6 text-center">
                     <p className="text-sm text-gray-600">
-                        Don't have an account?
+                        Already have an account?
                     </p>
                     <button
-                        onClick={() => router.push('/register')}
+                        onClick={() => router.push('/')}
                         className="mt-2 py-2 px-4 w-full bg-gray-100 hover:bg-gray-200 text-blue-600 font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                     >
-                        Sign Up
+                        Log In
                     </button>
                 </div>
             </div>
@@ -41,4 +48,4 @@ const Home: NextPage = () => {
     )
 }
 
-export default Home
+export default RegisterPage
